@@ -51,6 +51,15 @@ ul li{
     justify-content: space-between;
 }
 
+.ul-items li i {
+    transition: width 0.3s ease, height 0.3s ease, color 0.3s ease;
+}
+
+.ul-items li i:hover{
+    cursor: pointer;
+    transform: scale(1.5); /* Slightly enlarge the element */  
+    color: red;
+}
 
 
 
