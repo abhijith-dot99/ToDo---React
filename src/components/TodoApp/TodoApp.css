@@ -47,6 +47,10 @@ ul li{
     border-radius: 20px;
     box-shadow: 5px 5px #a7b4b7;
 
+    /* display: flex;
+    justify-content: space-between; */
+}
+.for-icons {
     display: flex;
     justify-content: space-between;
 }
@@ -61,6 +65,27 @@ ul li{
     color: red;
 }
 
+.editanddelete {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+}
+.for-edit{
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+}
+.for-edit input {
+    border: 1px solid green;
+    border-radius: 20px;
+}
+
+.for-edit button {
+    border-radius: 20px;
+    background: #689d68;
+    padding: 10px;
+    color: antiquewhite;
+}
 
 
 
