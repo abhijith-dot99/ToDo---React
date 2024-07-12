@@ -10,6 +10,14 @@ class TodoApp extends Component {
         newValue: ""
     };
 
+    // Load items from local storage when the component mounts
+    componentDidMount() {
+        const items = JSON.parse(localStorage.getItem("items"));
+        if (items) {
+            this.setState({ items });
+        }
+    }
+
     // Handle changes in the input field for new items
     handleChange = (event) => {
         this.setState({ input: event.target.value });
@@ -18,7 +26,7 @@ class TodoApp extends Component {
     // Store new items in the list
     storeItems = (event) => {
         event.preventDefault();
-        const { input } = this.state;
+        const { input, items } = this.state;
 
         // Prevent adding empty items
         if (input.trim() === "") {
@@ -26,22 +34,30 @@ class TodoApp extends Component {
         }
 
         // Add new item to the list and clear the input field
+        const updatedItems = [...items, input];
         this.setState({
-            items: [...this.state.items, input],
+            items: updatedItems,
             input: "",
         });
+
+        // Save updated items to local storage
+        localStorage.setItem("items", JSON.stringify(updatedItems));
     };
 
     // Delete an item from the list
     handleDelete = (index) => {
-        const allItems = [...this.state.items];
-        allItems.splice(index, 1);
+        const { items } = this.state;
+        const updatedItems = items.filter((item, i) => i !== index);
 
         this.setState({
-            items: allItems,
+            items: updatedItems,
         });
+
+        // Save updated items to local storage
+        localStorage.setItem("items", JSON.stringify(updatedItems));
     };
 
+    
     // Enable edit mode for a specific item
     handleEdit = (index) => {
         this.setState({ editingIndex: index, newValue: this.state.items[index] });
@@ -54,8 +70,9 @@ class TodoApp extends Component {
 
     // Update the item with the new value
     updateItem = (index) => {
-        const updatedItems = [...this.state.items];
-        updatedItems[index] = this.state.newValue;
+        const { items, newValue } = this.state;
+        const updatedItems = [...items];
+        updatedItems[index] = newValue;
 
         // Clear edit mode after updating
         this.setState({
@@ -63,6 +80,9 @@ class TodoApp extends Component {
             editingIndex: null,
             newValue: ""
         });
+
+        // Save updated items to local storage
+        localStorage.setItem("items", JSON.stringify(updatedItems));
     };
 
     render() {
@@ -95,11 +115,11 @@ class TodoApp extends Component {
                                 // Render item and action icons if not in edit mode
                                 <div className="for-icons">
                                     <div>{data}</div>
-                                    <div class="editanddelete">
+                                    <div className="editanddelete">
                                         <i
                                             className="fas fa-edit"
                                             onClick={() => this.handleEdit(index)}
-                                        ></i>                                 
+                                        ></i>
                                         <i
                                             className="fa-solid fa-xmark"
                                             onClick={() => this.handleDelete(index)}
