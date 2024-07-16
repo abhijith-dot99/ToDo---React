@@ -3,14 +3,37 @@
     height: 60px;
     background-color: #526d65;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     
 }
 
-.header-tag a {
+.logo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+    padding: 0 20px;
+}
+
+
+.nav-links {
+    padding: 0 20px;
+}
+
+.nav-links a {
     text-decoration: none;
     color: #000;
     font-weight: bold;
+    font-size: large;
+    font-family: cursive;
     margin: 0  5px;
+}
+
+.nav-links a:hover {
+    color: rgb(88, 131, 142);
 }
