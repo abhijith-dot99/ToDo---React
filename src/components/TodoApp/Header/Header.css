@@ -1,0 +1,16 @@
+.header-tag {
+    width: 100%;
+    height: 60px;
+    background-color: #526d65;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.header-tag a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin: 0  5px;
+}
